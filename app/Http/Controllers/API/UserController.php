@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -49,5 +51,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    /**
+     * Export users to Excel.
+     */
+    public function exportUsers()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }
