@@ -6,6 +6,7 @@ use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -60,6 +61,8 @@ class UserController extends Controller
     {
         // return Excel::download(new UsersExport, 'users.xlsx');
 
-        return Excel::store(new UsersExport, 'users.xlsx');
+        // return Excel::store(new UsersExport, 'users.xlsx');
+
+        return User::query()->downloadExcel('users.xlsx', ExcelExcel::XLSX, true);
     }
 }
