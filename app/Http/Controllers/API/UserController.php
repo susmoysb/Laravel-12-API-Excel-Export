@@ -65,6 +65,10 @@ class UserController extends Controller
 
         // Using Eloquent Builder/Model
         // return User::query()->downloadExcel('users.xlsx', ExcelExcel::XLSX, true);
-        return User::query()->storeExcel('users.xlsx');
+        // return User::query()->storeExcel('users.xlsx');
+
+        // Using Exportable Trait
+        // return (new UsersExport)->download('users.xlsx');
+        return (new UsersExport)->store('users.xlsx');
     }
 }
